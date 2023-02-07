@@ -2,15 +2,15 @@ import os
 import requests
 import json
 from dotenv import load_dotenv
+from helpers import google_maps_service as gms, yandex_maps_service as yms
 
 load_dotenv()
 
 
-def GetLocationInfo(address):
-    base_url = os.getenv('GOOGLE_MAPS_BASE_URL')
-    endpoint = f"{base_url}?address={address}&key={os.getenv('GOOGLE_MAPS_API_KEY')}"
-    r = requests.get(endpoint)
-    if r.status_code not in range(200, 299):
-        return "Adres Bilgisi bulunamadı!"
+def GetLocationInfo(address, map):
+    if map == "Google":
+        return gms.GetLocationInfo(address)
+    else:
+        return yms.GetLocationInfo(address)
 
-    return r.json()
+
