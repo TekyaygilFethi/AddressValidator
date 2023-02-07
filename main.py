@@ -1,8 +1,10 @@
 from helpers import address_helper as ah
 import streamlit as st
 
+"""
 if 'address_json' not in st.session_state:
     st.session_state.address_json = ''
+"""
 
 if 'provider' not in st.session_state:
     st.session_state.provider = 'Google'
