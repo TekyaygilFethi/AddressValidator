@@ -9,8 +9,21 @@ load_dotenv()
 
 def GetLocationInfo(address, map):
     if map == "Google":
-        return gms.GetLocationInfo(address)
+        r = gms.GetLocationInfo(address)
+        results = r['results'][0]
+        lat = results['geometry']['location']['lat']
+        long = results['geometry']['location']['lng']
+
+        return lat, long, r
     else:
-        return yms.GetLocationInfo(address)
+        r = yms.GetLocationInfo(address)
 
+        try:
+            long, lat = r[0]["GeoObject"]["Point"]["pos"].split(" ")
+            print(lat,long)
+            return lat, long, r
 
+        except Exception as e:
+            print(e)
+
+        return None, None, yms.GetLocationInfo(address)
