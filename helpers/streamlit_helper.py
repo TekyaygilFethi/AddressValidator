@@ -24,4 +24,4 @@ def SetInitialStreamlitStates():
         st.session_state.yandex_map_lat_long = f"Koordinatlar: {[]}"
 
     if 'google_map_lat_long' not in st.session_state:
-        st.session_state.yandex_map_lat_long = f"Koordinatlar: {[]}"
+        st.session_state.google_map_lat_long = f"Koordinatlar: {[]}"
